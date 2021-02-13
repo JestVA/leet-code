@@ -16,12 +16,10 @@ const determineIsPalindromeProduct = (n1, n2) =>
 
 	const [a,b] = [productArr.slice(0, hasOddMiddle ? sliceIndexStart - 1 : sliceIndexStart), productArr.slice(sliceIndexStart)]; 
 
-	if(a.join`` === b.reverse().join``)
-	{
-		palindromes.push({ palindrome: (n1 * n2), n1, n2 });
-	}
-
-	return false;
+	if(! a.join`` === b.reverse().join``)
+		return;
+	
+	return palindromes.push({ palindrome: (n1 * n2), n1, n2 });
 }
 
 for(let n1 = 100; n1 < 1000; n1++)
