@@ -52,26 +52,20 @@ const assertor = fun => testingFunction(fun);
 
 const findIntTargetExists = (intArray, target) =>
 {
-	let findingT = true;
 	let foundT = false;
 
-	while(findingT)
+	for(let i = intArray.length - 1; i >= 0; i--)
 	{
-		for(let i = intArray.length - 1; i >= 0; i--)
+		if(foundT)
+			break;
+
+		for(let j = 0; j < intArray.length; j++)
 		{
+			foundT = target === (intArray[j] + intArray[i]);
+
 			if(foundT)
 				break;
-
-			for(let j = 0; j < intArray.length; j++)
-			{
-				foundT = target === (intArray[j] + intArray[i]);
-
-				if(foundT)
-					break;
-			}
 		}
-
-		findingT = false;
 	}
 
 	return foundT;
@@ -81,5 +75,8 @@ const findIntTargetExists = (intArray, target) =>
 assertor(findIntTargetExists);
 
 
-// DOCS:
-// Sliding window: https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
+/*
+	DOCS:
+	Some day, implement something more clever... 
+	e.g. Sliding window: https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
+*/
