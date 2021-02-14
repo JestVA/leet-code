@@ -27,17 +27,22 @@ const testingFunction = (fun) =>
 			set: [3, 6, 9],
 			target: 9,
 			exists: true
+		},
+		{
+			set: [3, 1, 0, -2, 6, 9],
+			target: 1,
+			exists: true
 		}
 	];
 
-	console.log("Initialising tests...");
+	console.log("Initialising tests...", givenTests.length);
 
 	givenTests.forEach((test, i) => 
 	{
-		const assertResult = fun(test.set);
+		const assertResult = fun(test.set, test.target);
 
 		if(assertResult === test.exists)
-			console.log(`Passing test ${i + 1}, target ${test.target} was ${test.exists}`);
+			console.log(`Passing test ${i + 1}, target ${test.target} should be ${test.exists} and was ${assertResult}`);
 		else
 			console.log(`Test ${i + 1} failed, target ${test.target} should exist: ${test.exists}, value provided was ${assertResult}`);
 	});
@@ -45,10 +50,36 @@ const testingFunction = (fun) =>
 
 const assertor = fun => testingFunction(fun);
 
-const findIntTargetExists = intArray =>
+const findIntTargetExists = (intArray, target) =>
 {
-	// code here - red refactor stage!
+	let findingT = true;
+	let foundT = false;
+
+	while(findingT)
+	{
+		for(let i = intArray.length - 1; i >= 0; i--)
+		{
+			if(foundT)
+				break;
+
+			for(let j = 0; j < intArray.length; j++)
+			{
+				foundT = target === (intArray[j] + intArray[i]);
+
+				if(foundT)
+					break;
+			}
+		}
+
+		findingT = false;
+	}
+
+	return foundT;
 };
 
 // run here
 assertor(findIntTargetExists);
+
+
+// DOCS:
+// Sliding window: https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
