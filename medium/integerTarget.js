@@ -47,7 +47,7 @@ const assertor = fun => testingFunction(fun);
 
 const findIntTargetExists = intArray =>
 {
-	// code here
+	// code here - red refactor stage!
 };
 
 // run here
